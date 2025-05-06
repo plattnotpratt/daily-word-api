@@ -16,10 +16,23 @@ type WordsResponse struct {
   Words []string `json:"words"`
 }
 
+type MessageResponse struct {
+  Message string `json:"message"`
+}
+
 func main() {
 loadWordsFromFile("words.txt")
 
   r := chi.NewRouter()
+
+  r.Get("/", func(w http.ResponseWriter, r *http.Request){
+    resp := MessageResponse{Message : "This is a daily/random word api. For more information check out the github repo: https://github.com/plattnotpratt/daily-word-api"}
+    w.Header().Set("Content-Type", "application/json")
+    err := json.NewEncoder(w).Encode(resp)
+    if err != nil{
+      log.Fatal(err)
+    }
+  })
 
   r.Get("/daily-word", func(w http.ResponseWriter, r *http.Request){
     word := getDailyWord()
