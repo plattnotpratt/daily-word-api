@@ -38,9 +38,9 @@ func getRandomWord() string{
 }
 
 func getMultipleWords(x int) []string{
-  var words [0]string
+  var words []string
   for i := 0; i < x; i++{
-    words.append(getRandomWord())
+    words = append(words, getRandomWord())
   }
   return words
 }

@@ -5,6 +5,7 @@ import (
   "net/http"
   "github.com/go-chi/chi/v5"
   "log"
+  "strconv"
 )
 
 type WordResponse struct {
@@ -12,7 +13,7 @@ type WordResponse struct {
 }
 
 type WordsResponse struct {
-  Words string[] `json:"words"`
+  Words []string `json:"words"`
 }
 
 func main() {
@@ -40,9 +41,15 @@ loadWordsFromFile("words.txt")
     }
   })
 
-  r.Get("/random-words/{count:(\d)+", func(w http.ResponseWriter, r *http.Request){
-    count := chi.URLParam(r, "count")
-    
+  r.Get("/random-words/{count}", func(w http.ResponseWriter, r *http.Request){
+    count, _ := strconv.Atoi(chi.URLParam(r, "count"))
+    words := getMultipleWords(count)
+    resp := WordsResponse{Words : words}
+    w.Header().Set("Content-Type", "application/json")
+    err := json.NewEncoder(w).Encode(resp)
+    if err != nil{
+      log.Fatal(err)
+    }
   })
 
   log.Println("Server Started on :8080")
