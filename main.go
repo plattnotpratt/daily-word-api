@@ -11,6 +11,10 @@ type WordResponse struct {
   Word string `json:"word"`
 }
 
+type WordsResponse struct {
+  Words string[] `json:"words"`
+}
+
 func main() {
 loadWordsFromFile("words.txt")
 
@@ -34,6 +38,11 @@ loadWordsFromFile("words.txt")
     if err != nil{
       log.Fatal(err)
     }
+  })
+
+  r.Get("/random-words/{count:(\d)+", func(w http.ResponseWriter, r *http.Request){
+    count := chi.URLParam(r, "count")
+    
   })
 
   log.Println("Server Started on :8080")

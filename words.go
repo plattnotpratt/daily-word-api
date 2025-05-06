@@ -37,6 +37,13 @@ func getRandomWord() string{
   return words[index]
 }
 
+func getMultipleWords(x int) []string{
+  var words [0]string
+  for i := 0; i < x; i++{
+    words.append(getRandomWord())
+  }
+  return words
+}
 func getDailyWord() string{
   date := time.Now().Format("2006-01-02")
   h := sha1.New()
