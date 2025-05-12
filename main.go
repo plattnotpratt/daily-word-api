@@ -65,6 +65,18 @@ loadWordsFromFile("words.txt")
     }
   })
 
+  r.Get("/random-words/{count}/{length}", func(w http.ResponseWriter, r *http.Request){
+    count, _ := strconv.Atoi(chi.URLParam(r, "count"))
+    length, _ := strconv.Atoi(chi.URLParam(r, "length"))
+    words := getWordsWithLength(count, length)
+    resp := WordsResponse{Words : words}
+    w.Header().Set("Content-Type", "application/json")
+    err := json.NewEncoder(w).Encode(resp)
+    if err != nil{
+      log.Fatal(err)
+    }
+  })
+
   log.Println("Server Started on :8080")
   err := http.ListenAndServe(":8080", r)
 

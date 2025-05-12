@@ -44,6 +44,19 @@ func getMultipleWords(x int) []string{
   }
   return words
 }
+
+func getWordsWithLength(c int, l int) []string{
+  var words []string
+  for i := 0; i < c; i++{
+    word := getRandomWord()
+    if len(word) == l {
+      words = append(words, word)
+    }else{
+      i--
+    }
+  }
+  return words;
+}
 func getDailyWord() string{
   date := time.Now().Format("2006-01-02")
   h := sha1.New()
