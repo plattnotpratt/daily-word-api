@@ -54,7 +54,7 @@ go run .
 #### Daily Word Endpoint
 
 <details>
- <summary><code>GET</code> <code><b>/daily-word</b></code> <code>(Gets a word that changes only at the start of a new day based on Eastern Timezone)</code></summary>
+ <summary><code>GET</code> <code><b>/daily-word</b></code> <code>(Gets a word that changes only at the start of a new day based on UTC-5:00)</code></summary>
 
 ##### Parameters
 
@@ -74,3 +74,59 @@ go run .
 > ```
 
 </details>
+
+
+------------------------------------------------------------------------------------------
+
+#### Random Word Endpoints
+
+<details>
+ <summary><code>GET</code> <code><b>/random-word</b></code> <code>(Gets a random word every time the request is made.)</code></summary>
+
+##### Parameters
+
+> None
+
+##### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `200`         | `application/json`        | `json String`                                                          |
+> | `400`       | `application/json`      | `json string`                                                        |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" http://localhost:8080/random-word
+> ```
+
+</details>
+
+<details>
+ <summary><code>GET</code> <code><b>/daily-words/{count}</b></code> <code>(Gets an array of random words based on the number specified )</code></summary>
+
+##### Parameters
+
+> | name              |  type     | data type      | description                         |
+> |-------------------|-----------|----------------|-------------------------------------|
+> | `count` |  required | int   | the number of words you would like returned in the array.(This does not avoid duplicates)        |
+
+
+##### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `200`         | `application/json`        | `json String`                                                          |
+> | `400`       | `application/json`      | `json string`                                                        |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" http://localhost:8080/random-words/4
+> ```
+
+</details>
+
+
+
+
