@@ -103,7 +103,33 @@ go run .
 </details>
 
 <details>
- <summary><code>GET</code> <code><b>/daily-words/{count}</b></code> <code>(Gets an array of random words based on the number specified )</code></summary>
+ <summary><code>GET</code> <code><b>/random-word/{length}</b></code> <code>(Gets a random words with the specified length)</code></summary>
+
+##### Parameters
+
+> | name              |  type     | data type      | description                         |
+> |-------------------|-----------|----------------|-------------------------------------|
+> | `length` |  required | int   | The number of characters in the random word.        |
+
+
+##### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `200`         | `application/json`        | `json String`                                                          |
+> | `400`       | `application/json`      | `json string`                                                        |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" http://localhost:8080/random-word/4
+> ```
+
+</details>
+
+
+<details>
+ <summary><code>GET</code> <code><b>/random-words/{count}</b></code> <code>(Gets an array of random words based on the number specified )</code></summary>
 
 ##### Parameters
 
@@ -127,6 +153,29 @@ go run .
 
 </details>
 
+<details>
+ <summary><code>GET</code> <code><b>/random-words/{count}/{length}</b></code> <code>(Gets an array of random words based on the number and filters them based on specified length)</code></summary>
+
+##### Parameters
+
+> | name              |  type     | data type      | description                         |
+> |-------------------|-----------|----------------|-------------------------------------|
+> | `count` |  required | int   | the number of words you would like returned in the array.(This does not avoid duplicates)        |
+> | `length` |  required | int   | the number of characters in the array of words.(This does not avoid duplicates)        |
 
 
 
+##### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `200`         | `application/json`        | `json String`                                                          |
+> | `400`       | `application/json`      | `json string`                                                        |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" http://localhost:8080/random-words/4/5
+> ```
+
+</details>
