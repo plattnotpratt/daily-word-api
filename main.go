@@ -54,6 +54,17 @@ loadWordsFromFile("words.txt")
     }
   })
 
+  r.Get("/random-word/{length}", func(w http.ResponseWriter, r *http.Request){
+    length, _ := strconv.Atoi(chi.URLParam(r, "length"))
+    word := getWordOfLength(length)
+    resp := WordResponse{Word : word}
+    w.Header().Set("Content-Type", "application/json")
+    err := json.NewEncoder(w).Encode(resp)
+    if err != nil{
+      log.Fatal(err)
+    }
+  })
+
   r.Get("/random-words/{count}", func(w http.ResponseWriter, r *http.Request){
     count, _ := strconv.Atoi(chi.URLParam(r, "count"))
     words := getMultipleWords(count)

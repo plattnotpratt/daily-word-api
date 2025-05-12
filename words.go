@@ -57,6 +57,11 @@ func getWordsWithLength(c int, l int) []string{
   }
   return words;
 }
+
+func getWordOfLength(l int) string{
+  return getWordsWithLength(1, l)[0]
+}
+
 func getDailyWord() string{
   date := time.Now().Format("2006-01-02")
   h := sha1.New()
