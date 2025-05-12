@@ -19,4 +19,6 @@ go run .
 - Use Curl or the browser to navigate to an end point:
     - GET http://localhost:8080/daily-word - Returns a json response with a random word that only changes at the start of a new day. 12:00 AM
     - GET http://localhost:8080/random-word - Returns a json response with a single random word.
+    - GET http://localhost:8080/random-word/4 - Returns a json response with a single random word with the length of 4
     - GET http://localhost:8080/random-words/3 - Returns an json response with an array of 3 words
+    - GET http://localhost:8080/random-words/3/4 - Returns a json response with an array of 3 words that are all length 4
