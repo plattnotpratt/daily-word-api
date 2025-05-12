@@ -129,7 +129,7 @@ go run .
 
 
 <details>
- <summary><code>GET</code> <code><b>/random-words/{count}</b></code> <code>(Gets an array of random words based on the number specified )</code></summary>
+ <summary><code>GET</code> <code><b>/random-words/{count}</b></code> <code>(Returns an array of random words with number of elements based on the number specified. )</code></summary>
 
 ##### Parameters
 
